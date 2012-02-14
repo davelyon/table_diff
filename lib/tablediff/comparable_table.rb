@@ -11,6 +11,7 @@ module Tablediff
     end
 
     def diff(expected)
+      fail MissingRows unless expected.rows.count == rows.count
       expected_row = expected.rows.each
       row_diffs = rows.each_with_object([]) do |actual_row, diff_rows|
         diff_rows << actual_row.diff(expected_row.next)

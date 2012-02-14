@@ -33,6 +33,17 @@ describe Tablediff::ComparableTable do
         should be_a Tablediff::DifferentTables
       end
     end
+
+    context "when the number of rows is not equal" do
+      let(:expected_table) do
+        described_class.new( stub( :hashes => [{"baz" => "nope"}] ) )
+      end
+      it "raises an error" do
+        expect {
+          subject
+        }.to raise_error Tablediff::MissingRows
+      end
+    end
   end
 
   describe "#different?" do
