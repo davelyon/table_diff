@@ -12,19 +12,36 @@ module Tablediff
 
     def diff(expected)
       fail MissingRows unless expected.rows.count == rows.count
-      expected_row = expected.rows.each
-      row_diffs = rows.each_with_object([]) do |actual_row, diff_rows|
-        diff_rows << actual_row.diff(expected_row.next)
-      end
-      if row_diffs.any? &:different?
-        DifferentTables.new(self, expected, row_diffs)
-      else
-        self
-      end
+      Differentiator.new(self, expected).diff
     end
 
     def different?
       false
+    end
+  end
+
+  class Differentiator
+    attr_reader :actual, :expected
+    def initialize(actual, expected)
+      @actual, @expected = actual, expected
+    end
+
+    def rows
+      actual.rows.each.zip expected.rows.each
+    end
+
+    def diff
+      if diff_rows.any? &:different?
+        DifferentTables.new(actual, expected, diff_rows)
+      else
+        actual
+      end
+    end
+
+    def diff_rows
+      @diffs = rows.map do |pair|
+        pair.first.diff pair.last
+      end
     end
   end
 end
