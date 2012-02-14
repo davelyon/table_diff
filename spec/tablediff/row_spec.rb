@@ -30,4 +30,9 @@ describe Tablediff::Row do
     subject { row }
     it { should_not be_different }
   end
+
+  describe "#widths" do
+    subject { row.widths }
+    it { should == [ 4, 2 ] }
+  end
 end

@@ -7,7 +7,11 @@ module Tablediff
     end
 
     def rows
-      @rows = table.hashes.map { |hash| Row.new(hash) }
+      @rows ||= table.hashes.map { |hash| Row.new(hash) }
+    end
+
+    def headers_row
+      Row.new Hash[table.headers.zip table.headers]
     end
 
     def diff(expected)

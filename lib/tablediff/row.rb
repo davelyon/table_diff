@@ -11,6 +11,14 @@ module Tablediff
       RowWithDifferences.new(self, row)
     end
 
+    def strings
+      @strings ||= raw.values.map(&:to_s)
+    end
+
+    def widths
+      strings.map(&:size)
+    end
+
     def ==(row)
       row.raw == raw
     end
