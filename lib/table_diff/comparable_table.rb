@@ -1,4 +1,4 @@
-module Tablediff
+module TableDiff
   class ComparableTable
     attr_reader :table
 

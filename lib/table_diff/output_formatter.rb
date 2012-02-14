@@ -1,4 +1,4 @@
-module Tablediff
+module TableDiff
   class OutputFormatter
     attr_reader :rows
     def initialize(rows)

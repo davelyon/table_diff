@@ -1,6 +1,6 @@
 # Table Diff
 
-An api for determining the difference between two tables, if any exist.
+A simple library for use in testing to compare an actual and expected table. Compatible with Cucumber, Rspec, and Turnip
 
 ## Installation
 
@@ -18,12 +18,12 @@ Or install it yourself as:
 
 ## Usage
 
-	actual = get_table('foo') # Some sort of method that returns an array of arrays
-	expected = table
+	TableDiff::CompareTables.compare(actual, expected)
 
-	differences = TableCompare.compare(actual, expected)
+## Forthcoming
 
-	differences.should be_same_tables
+* Should handle extra rows
+* Should handle extra columns
 
 ## Contributing
 

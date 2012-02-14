@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Tablediff::ComparableTable do
+describe TableDiff::ComparableTable do
 
   let(:table) { stub( :hashes => [{"foo" => "bar"}, {"baz" => "xlerb"}], :headers => {"foo" => "foo"}) }
   let(:comparable_table) { described_class.new(table) }
@@ -9,7 +9,7 @@ describe Tablediff::ComparableTable do
     subject { comparable_table.rows }
     it "is a collection of Rows" do
       should(satisfy do |rows|
-        rows.all? { |r| r.is_a? Tablediff::Row }
+        rows.all? { |r| r.is_a? TableDiff::Row }
       end)
     end
   end
@@ -30,7 +30,7 @@ describe Tablediff::ComparableTable do
       end
 
       it "raises DifferentTables" do
-        expect { subject }.to raise_error Tablediff::DifferentTables
+        expect { subject }.to raise_error TableDiff::DifferentTables
       end
     end
 
@@ -41,7 +41,7 @@ describe Tablediff::ComparableTable do
       it "raises an error" do
         expect {
           subject
-        }.to raise_error Tablediff::MissingRows
+        }.to raise_error TableDiff::MissingRows
       end
     end
   end

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Tablediff::Row do
+describe TableDiff::Row do
   let(:row_hash) do
     { "Name" => "Dave", "Number" => 11 }
   end
@@ -21,7 +21,7 @@ describe Tablediff::Row do
     context "when there are differences" do
       let(:expected_row) { described_class.new(row_hash.merge("Name" => "Bob")) }
       it "returns an instance of RowWithDifferences" do
-        row.diff(expected_row).should be_a Tablediff::RowWithDifferences
+        row.diff(expected_row).should be_a TableDiff::RowWithDifferences
       end
     end
   end

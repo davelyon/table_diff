@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Tablediff::Table do
+describe TableDiff::Table do
   let(:raw_table) do
     [
       [ "Name", "Email", "Hat Size"],

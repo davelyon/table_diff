@@ -1,1 +1,1 @@
-require 'tablediff'
+require 'table_diff'

@@ -1,4 +1,4 @@
-module Tablediff
+module TableDiff
   class RowWithDifferences
     attr_reader :actual, :expected
     def initialize actual, expected

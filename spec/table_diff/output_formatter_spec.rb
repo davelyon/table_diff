@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe Tablediff::OutputFormatter do
+describe TableDiff::OutputFormatter do
   HEADERS = ["One", "Two", "Tree"]
-  Row = Tablediff::Row
-  RowWithDifferences = Tablediff::RowWithDifferences
+  Row = TableDiff::Row
+  RowWithDifferences = TableDiff::RowWithDifferences
   def row_hash(array)
     Hash[HEADERS.zip(array)]
   end

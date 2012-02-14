@@ -1,4 +1,4 @@
-module Tablediff
+module TableDiff
   # Table:
   # | Name | Email | Hat Size |
   # | Dave | a@b.co| 7 3/4    |

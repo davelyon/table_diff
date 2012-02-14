@@ -1,4 +1,4 @@
-module Tablediff
+module TableDiff
   module CompareTables
     extend self
 

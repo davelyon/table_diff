@@ -1,4 +1,4 @@
-module Tablediff
+module TableDiff
   class Row
     attr_reader :raw
 

@@ -1,4 +1,4 @@
-module Tablediff
+module TableDiff
   class DifferentTables < Exception
     def initialize actual, expected, row_diffs
       row_diffs.unshift actual.headers_row
