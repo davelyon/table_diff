@@ -26,7 +26,7 @@ describe Tablediff::ComparableTable do
 
     context "when there are differences" do
       let(:expected_table) do
-        described_class.new( stub( :hashes => [{ "foo" => "bar", "baz" => "nope"}] ) )
+        described_class.new( stub( :hashes => [{ "foo" => "bar"}, {"baz" => "nope"}] ) )
       end
 
       it "returns an instance of DifferentTables" do

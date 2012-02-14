@@ -11,14 +11,11 @@ module Tablediff
     end
 
     def diff(expected)
-      row_diffs = []
-      tables_different = false
-      rows.each_with_index do |actual_row, index|
-        diff = actual_row.diff expected.rows[index]
-        tables_different = diff.different?
-        row_diffs << diff
+      expected_row = expected.rows.each
+      row_diffs = rows.each_with_object([]) do |actual_row, diff_rows|
+        diff_rows << actual_row.diff(expected_row.next)
       end
-      if tables_different
+      if row_diffs.any? &:different?
         DifferentTables.new(self, expected, row_diffs)
       else
         self
