@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Tablediff::ComparableTable do
 
-  let(:table) { stub( :hashes => [{"foo" => "bar"}, {"baz" => "xlerb"}]) }
+  let(:table) { stub( :hashes => [{"foo" => "bar"}, {"baz" => "xlerb"}], :headers => {"foo" => "foo"}) }
   let(:comparable_table) { described_class.new(table) }
 
   describe "#rows" do
@@ -26,11 +26,11 @@ describe Tablediff::ComparableTable do
 
     context "when there are differences" do
       let(:expected_table) do
-        described_class.new( stub( :hashes => [{ "foo" => "bar"}, {"baz" => "nope"}] ) )
+        described_class.new( stub( :hashes => [{ "foo" => "bar"}, {"baz" => "nope"}]) )
       end
 
-      it "returns an instance of DifferentTables" do
-        should be_a Tablediff::DifferentTables
+      it "raises DifferentTables" do
+        expect { subject }.to raise_error Tablediff::DifferentTables
       end
     end
 

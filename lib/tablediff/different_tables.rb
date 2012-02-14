@@ -1,11 +1,8 @@
 module Tablediff
-  class DifferentTables
+  class DifferentTables < Exception
     def initialize actual, expected, row_diffs
-
-    end
-
-    def different?
-      true
+      row_diffs.unshift actual.headers_row
+      super OutputFormatter.new(row_diffs)
     end
   end
 end

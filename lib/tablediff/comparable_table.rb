@@ -36,7 +36,7 @@ module Tablediff
 
     def diff
       if diff_rows.any? &:different?
-        DifferentTables.new(actual, expected, diff_rows)
+        raise DifferentTables.new(actual, expected, diff_rows)
       else
         actual
       end

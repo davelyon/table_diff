@@ -23,6 +23,6 @@ describe Tablediff::CompareTables do
     let(:expected) do
       Tablediff::Table.new [ [ "Name", "Email", "Hat Size" ], [ "Dave", "a@b.co", 7 ] ]
     end
-    it { should be_different }
+    it { expect {subject}.to raise_error Tablediff::DifferentTables }
   end
 end
