@@ -9,6 +9,7 @@ module Tablediff
   autoload :RowWithDifferences,  "tablediff/row_with_differences"
 
   autoload :CompareTables,       "tablediff/compare_tables"
+  autoload :OutputFormatter,     "tablediff/output_formatter"
 
   class MissingRows < Exception; end
 end
