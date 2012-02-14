@@ -14,7 +14,6 @@ Gem::Specification.new do |s|
   s.executables   = []
   s.files         = Dir['lib/*'] + %w(README.md)
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
-  s.name          = "dummy_image"
   s.require_paths = ["lib"]
 
   s.add_development_dependency "rspec"
