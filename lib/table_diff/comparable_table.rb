@@ -6,6 +6,10 @@ module TableDiff
       @table = table
     end
 
+    def headers
+      @table.headers
+    end
+
     def rows
       @rows ||= table.hashes.map { |hash| Row.new(hash) }
     end
@@ -34,7 +38,12 @@ module TableDiff
       actual.rows.each.zip expected.rows.each
     end
 
+    def same_headers?
+      actual.headers == expected.headers
+    end
+
     def diff
+      raise DifferentHeaders.new(actual.headers_row, expected.headers_row) unless same_headers?
       if diff_rows.any? &:different?
         raise DifferentTables.new(actual, expected, diff_rows)
       else

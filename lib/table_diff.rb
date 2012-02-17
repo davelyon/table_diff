@@ -5,6 +5,8 @@ module TableDiff
   autoload :ComparableTable,     "table_diff/comparable_table"
   autoload :DifferentTables,     "table_diff/different_tables"
 
+  autoload :DifferentHeaders,    "table_diff/different_headers"
+
   autoload :Row,                 "table_diff/row"
   autoload :RowWithDifferences,  "table_diff/row_with_differences"
 
