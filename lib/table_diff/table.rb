@@ -31,5 +31,9 @@ module TableDiff
       rows.map { |row| Hash[headers.zip(row)] }
     end
 
+    def diff(expected)
+      CompareTables.compare(self, expected)
+    end
+
   end
 end

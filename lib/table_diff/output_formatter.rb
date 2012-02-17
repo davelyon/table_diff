@@ -14,13 +14,11 @@ module TableDiff
     end
 
     def adjusted_columns
-      rows = []
-      row_strings.each_with_object(row_widths) do |strings, widths|
+      row_strings.each_with_object([[], row_widths]) do |strings, (rows, widths)|
         rows << strings.map.with_index do |string, index|
           string.rjust(widths[index])
         end
-      end
-      rows
+      end.first
     end
 
     def to_s

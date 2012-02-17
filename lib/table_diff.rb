@@ -11,5 +11,7 @@ module TableDiff
   autoload :CompareTables,       "table_diff/compare_tables"
   autoload :OutputFormatter,     "table_diff/output_formatter"
 
+  autoload :Turnip,              "table_diff/turnip"
+
   class MissingRows < Exception; end
 end
