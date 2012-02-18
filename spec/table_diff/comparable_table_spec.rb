@@ -2,8 +2,15 @@ require 'spec_helper'
 
 describe TableDiff::ComparableTable do
 
-  let(:table) { stub( :hashes => [{"foo" => "bar"}, {"baz" => "xlerb"}], :headers => {"foo" => "foo"}) }
-  let(:comparable_table) { described_class.new(table) }
+  let(:table) do
+    TableDiff::Table.new([
+      ["A", "B", "C"],
+      ["1", "2", "3"],
+      ["4", "5", "6"]
+    ])
+  end
+
+  let(:comparable_table) { described_class.new table }
 
   describe "#rows" do
     subject { comparable_table.rows }
@@ -14,35 +21,11 @@ describe TableDiff::ComparableTable do
     end
   end
 
-  describe "#diff" do
-    subject { comparable_table.diff(expected_table) }
-
-    context "when there are no differences" do
-      let(:expected_table) { comparable_table }
-      it "returns self" do
-        should == comparable_table
-      end
-    end
-
-    context "when there are differences" do
-      let(:expected_table) do
-        described_class.new( stub( :hashes => [{ "foo" => "bar"}, {"baz" => "nope"}], :headers => table.headers))
-      end
-
-      it "raises DifferentTables" do
-        expect { subject }.to raise_error TableDiff::DifferentTables
-      end
-    end
-
-    context "when the number of rows is not equal" do
-      let(:expected_table) do
-        described_class.new( stub( :hashes => [{"baz" => "nope"}] ) )
-      end
-      it "raises an error" do
-        expect {
-          subject
-        }.to raise_error TableDiff::MissingRows
-      end
+  describe "#with_selected_columns" do
+    subject { comparable_table.with_selected_columns("A") }
+    it "returns a table with only those columns" do
+      subject.headers.should == ["A"]
+      subject.table.raw.should == [ ["A"], ["1"], ["4"] ]
     end
   end
 

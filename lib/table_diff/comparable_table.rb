@@ -18,6 +18,13 @@ module TableDiff
       Row.new Hash[table.headers.zip table.headers]
     end
 
+    def with_selected_columns(*cols)
+      cols.map! do |col|
+        headers.index col
+      end
+      self.class.new table_for_column_ids(cols)
+    end
+
     def diff(expected)
       fail MissingRows unless expected.rows.count == rows.count
       Strategies::Differentiator.new(self, expected).diff
@@ -25,6 +32,14 @@ module TableDiff
 
     def different?
       false
+    end
+
+    private
+
+    def table_for_column_ids(ids)
+      Table.new(table.raw.each_with_object([]) do |row, ary|
+        ary << row.values_at(*ids)
+      end)
     end
   end
 end
