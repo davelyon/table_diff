@@ -24,8 +24,8 @@ module TableDiff
       end
 
       def diff_rows
-        @diffs = rows.map do |pair|
-          pair.first.diff pair.last
+        @diffs = rows.map do |(first, last)|
+          first.diff last
         end
       end
     end
