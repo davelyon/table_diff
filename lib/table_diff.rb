@@ -25,5 +25,5 @@ module TableDiff
   # Framework integrations
   autoload :Turnip,              "table_diff/turnip"
 
-  class MissingRows < Exception; end
+  class MissingRows < StandardError; end
 end

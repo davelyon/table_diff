@@ -1,5 +1,5 @@
 module TableDiff
-  class DifferentHeaders < Exception
+  class DifferentHeaders < StandardError
 
     def initialize actual, expected
       diff = RowWithDifferences.new(actual, expected)
