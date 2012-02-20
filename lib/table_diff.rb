@@ -17,6 +17,7 @@ module TableDiff
   autoload :DifferentHeaders,    "table_diff/different_headers"
 
   # Strategies
+  autoload :Diff,                "table_diff/diff"
   module Strategies
     autoload :Differentiator,    "table_diff/strategies/differentiator"
   end

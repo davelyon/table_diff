@@ -26,8 +26,7 @@ module TableDiff
     end
 
     def diff(expected)
-      fail MissingRows unless expected.rows.count == rows.count
-      Strategies::Differentiator.new(self, expected).diff
+      Diff.new(self, expected)
     end
 
     def different?
