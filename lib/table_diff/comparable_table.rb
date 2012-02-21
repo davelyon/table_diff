@@ -29,6 +29,10 @@ module TableDiff
       Diff.new(self, expected)
     end
 
+    def to_list
+      table.raw.flatten
+    end
+
     def different?
       false
     end

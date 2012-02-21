@@ -20,6 +20,7 @@ module TableDiff
   autoload :Diff,                "table_diff/diff"
   module Strategies
     autoload :Differentiator,    "table_diff/strategies/differentiator"
+    autoload :List,              "table_diff/strategies/list"
   end
 
   # Framework integrations
