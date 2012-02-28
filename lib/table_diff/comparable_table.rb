@@ -14,6 +14,10 @@ module TableDiff
       @rows ||= table.hashes.map { |hash| Row.new(hash) }
     end
 
+    def raw_table
+      table.raw
+    end
+
     def headers_row
       Row.new Hash[table.headers.zip table.headers]
     end
